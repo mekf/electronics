@@ -1,6 +1,13 @@
 // usually pin 13 on most Arduino board
 int ledPin = 13;
 
+int baseUnit   = 150;       // control the base unit (usually one tick)
+int dotUnit    = baseUnit;
+int dashUnit   = baseUnit * 3;
+
+int lettersGap = baseUnit * 3;
+int wordsGap   = baseUnit * 7;
+
 // the setup routine runs once after reset is pressed
 void setup() {
   // initialize the digital pin as an output.                 
@@ -11,25 +18,25 @@ void loop() {
   blinkS();
   blinkO();
   blinkS();
-  delay(1500);
+  delay(wordsGap);
 }
 
 void blinkS() {
   dot(); dot(); dot();
-  delay(200);
+  delay(lettersGap);
 }
 
 void blinkO() {
   dash(); dash(); dash();
-  delay(200);
+  delay(lettersGap);
 }
 
 void dot() {
-  morseBlink(150, 150);
+  morseBlink(dotUnit, baseUnit);
 }
 
 void dash() {
-  morseBlink(450, 150);
+  morseBlink(dashUnit, baseUnit);
 }
 
 void morseBlink(int up, int down) {
